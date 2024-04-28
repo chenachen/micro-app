@@ -1,0 +1,35 @@
+{
+    "name": "@common/components",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "module": "dist/index.esm-bundler.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "index.js",
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "node": {
+                "production": "./dist/index.cjs.prod.js",
+                "development": "./dist/index.cjs.js",
+                "default": "./index.js"
+            },
+            "module": "./dist/index.esm-bundler.js",
+            "import": "./dist/index.esm-bundler.js",
+            "require": "./index.js"
+        },
+        "./*": "./*"
+    },
+    "scripts": {
+        "dev": "node ./dev.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "rollup-plugin-vue": "^6.0.0"
+    }
+}

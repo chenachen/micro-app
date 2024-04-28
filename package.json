@@ -11,16 +11,28 @@
         "preview": "pnpm preview --parallel",
         "eslint": "npx eslint --ext .js,.ts,.tsx,.vue . --ignore-path .gitignore",
         "eslint:fix": "npx eslint --ext .js,.ts,.tsx,.vue . --ignore-path .gitignore --fix",
-        "pre-commit": "lint-staged"
+        "pre-commit": "lint-staged",
+        "commit": "git-cz"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "dependencies": {
+        "@element-plus/icons-vue": "^2.3.1",
+        "@vueuse/core": "^10.9.0",
+        "axios": "^1.6.8",
+        "element-plus": "^2.7.2",
+        "pinia": "^2.1.7",
+        "vue": "^3.4.21",
+        "vue-router": "^4.3.2"
+    },
     "devDependencies": {
         "@commitlint/cli": "^19.3.0",
         "@commitlint/config-conventional": "^19.2.2",
         "@typescript-eslint/eslint-plugin": "^7.7.1",
         "@typescript-eslint/parser": "^7.7.1",
+        "commitizen": "^4.3.0",
+        "cz-git": "^1.9.1",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-import": "^2.29.1",
@@ -30,14 +42,26 @@
         "less": "^4.2.0",
         "lint-staged": "^15.2.2",
         "prettier": "^3.2.5",
+        "rollup": "^4.17.0",
+        "rollup-plugin-dts": "^6.1.0",
+        "rollup-plugin-typescript2": "^0.36.0",
         "typescript": "^5.4.5",
         "vite": "^5.2.10"
+    },
+    "config": {
+        "commitizen": {
+            "path": "node_modules/cz-git"
+        }
     },
     "lint-staged": {
         "*.{js,json,css,less}": [
             "prettier --write"
         ],
-        "*.{ts?(x), vue}": [
+        "*.ts?(x)": [
+            "eslint --fix",
+            "prettier --parser=typescript --write"
+        ],
+        "*.vue": [
             "eslint --fix",
             "prettier --parser=typescript --write"
         ]

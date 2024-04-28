@@ -1,0 +1,33 @@
+{
+    "name": "@common/utils",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "module": "dist/index.esm-bundler.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "index.js",
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "node": {
+                "production": "./dist/index.cjs.prod.js",
+                "development": "./dist/index.cjs.js",
+                "default": "./index.js"
+            },
+            "module": "./dist/index.esm-bundler.js",
+            "import": "./dist/index.esm-bundler.js",
+            "require": "./index.js"
+        },
+        "./*": "./*"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {}
+}
