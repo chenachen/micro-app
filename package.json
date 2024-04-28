@@ -1,0 +1,45 @@
+{
+    "name": "micro-app",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "husky install",
+        "preinstall": "npx only-allow pnpm",
+        "dev": "pnpm -F \"@app/*\"  --parallel dev",
+        "build": "pnpm build --parallel",
+        "preview": "pnpm preview --parallel",
+        "eslint": "npx eslint --ext .js,.ts,.tsx,.vue . --ignore-path .gitignore",
+        "eslint:fix": "npx eslint --ext .js,.ts,.tsx,.vue . --ignore-path .gitignore --fix",
+        "pre-commit": "lint-staged"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@commitlint/cli": "^19.3.0",
+        "@commitlint/config-conventional": "^19.2.2",
+        "@typescript-eslint/eslint-plugin": "^7.7.1",
+        "@typescript-eslint/parser": "^7.7.1",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-vue": "^9.25.0",
+        "husky": "^9.0.11",
+        "less": "^4.2.0",
+        "lint-staged": "^15.2.2",
+        "prettier": "^3.2.5",
+        "typescript": "^5.4.5",
+        "vite": "^5.2.10"
+    },
+    "lint-staged": {
+        "*.{js,json,css,less}": [
+            "prettier --write"
+        ],
+        "*.{ts?(x), vue}": [
+            "eslint --fix",
+            "prettier --parser=typescript --write"
+        ]
+    }
+}
