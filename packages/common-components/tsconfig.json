@@ -7,9 +7,16 @@
         "skipLibCheck": true,
 
         /* Bundler mode */
+        "moduleResolution": "bundler",
         "allowImportingTsExtensions": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
+        "jsx": "preserve",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "allowJs": true,
+        "declarationMap": true,
+        "outDir": "./typings",
 
         /* Linting */
         "strict": true,
@@ -17,6 +24,6 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "files": ["index.ts"],
-    "include": ["src/**/*.ts", "index.ts"]
+    "files": ["./index.js"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
