@@ -6,7 +6,7 @@
 import { RefreshButton } from '@common/components'
 import { test } from '@common/utils'
 
-test('ccc')
+test('c')
 </script>
 
 <style scoped></style>

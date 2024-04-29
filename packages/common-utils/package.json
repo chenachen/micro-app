@@ -2,15 +2,11 @@
     "name": "@common/utils",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
     "files": [
         "index.js",
         "dist"
     ],
-    "scripts": {
-        "dev": "tsc -p tsconfig.json --watch",
-        "build": "tsc -p tsconfig.json"
-    },
+    "scripts": {},
     "keywords": [],
     "author": "",
     "license": "ISC",
