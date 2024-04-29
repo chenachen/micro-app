@@ -4,6 +4,9 @@
 
 <script setup lang="ts">
 import { RefreshButton } from '@common/components'
+import { test } from '@common/utils'
+
+test('ccc')
 </script>
 
 <style scoped></style>

@@ -20,5 +20,6 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true
     },
-    "include": ["src/**/*.ts"]
+    "files": ["index.ts"],
+    "include": ["src/**/*.ts", "index.ts"]
 }
