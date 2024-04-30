@@ -78,9 +78,6 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
-      vite:
-        specifier: ^5.2.10
-        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)
 
   packages/app-child-vue3:
     dependencies:
@@ -94,6 +91,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^5.0.4
         version: 5.0.4(vite@5.2.10)(vue@3.4.25)
+      vite:
+        specifier: ^5.2.10
+        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.14(typescript@5.4.5)
@@ -110,6 +110,9 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^5.0.4
         version: 5.0.4(vite@5.2.10)(vue@3.4.25)
+      vite:
+        specifier: ^5.2.10
+        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.14(typescript@5.4.5)
