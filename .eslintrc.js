@@ -14,7 +14,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:import/recommended',
         'plugin:import/typescript',
-        './packages/app-main-vue3/.eslintrc.cjs',
     ],
     globals: {
         defineProps: 'readonly',
@@ -61,15 +60,15 @@ module.exports = {
             },
         ],
     },
-    // settings: {
-    //     'import/resolver': {
-    //         alias: {
-    //             map: [
-    //                 ['main-vue3', './packages/app-main-vue3/src'],
-    //                 ['child-vue3', './packages/app-main-vue3/src'],
-    //             ],
-    //             extensions: ['.ts', '.js', '.json', '.vue'],
-    //         },
-    //     },
-    // },
+    settings: {
+        'import/resolver': {
+            alias: {
+                map: [
+                    ['main-vue3', './packages/app-main-vue3/src'],
+                    ['child-vue3', './packages/app-child-vue3/src'],
+                ],
+                extensions: ['.ts', '.js', '.json', '.vue'],
+            },
+        },
+    },
 }

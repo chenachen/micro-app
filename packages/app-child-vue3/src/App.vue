@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import Test from 'src/components/test-comp.vue'
+import Test from 'child-vue3/components/test-comp.vue'
 </script>
 
 <style scoped></style>

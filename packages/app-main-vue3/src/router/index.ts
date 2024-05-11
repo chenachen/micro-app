@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
 
-const LayoutContainer = () => import('src/layouts/index.vue')
-const Home = () => import('src/views/home/index.vue')
+const LayoutContainer = () => import('main-vue3/layouts/index.vue')
+const Home = () => import('main-vue3/views/home/index.vue')
 
 const routes: RouteRecordRaw[] = [
     {
@@ -24,7 +24,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from) => {
-    window.console.log(to, from)
+    window['console'].log(to, from)
 })
 
 export default router

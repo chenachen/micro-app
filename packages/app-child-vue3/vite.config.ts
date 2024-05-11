@@ -13,7 +13,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         plugins: [vue()],
         resolve: {
             alias: {
-                src: resolve(__dirname, './src'),
+                'child-vue3': resolve(__dirname, './src'),
             },
         },
     }

@@ -20,7 +20,7 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
         "paths": {
-            "src/*": ["./src/*"]
+            "main-vue3/*": ["./src/*"]
         }
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
