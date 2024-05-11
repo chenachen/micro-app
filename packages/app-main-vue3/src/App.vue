@@ -1,12 +1,7 @@
 <template>
-    <div> main app <RefreshButton /> </div>
+    <router-view />
 </template>
 
-<script setup lang="ts">
-import { RefreshButton } from '@common/components'
-import { test } from '@common/utils'
-
-test('c')
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

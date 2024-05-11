@@ -11,5 +11,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             port: Number(VITE_CHILD_PORT),
         },
         plugins: [vue()],
+        resolve: {
+            alias: {
+                src: resolve(__dirname, './src'),
+            },
+        },
     }
 }
