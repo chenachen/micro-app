@@ -1,5 +1,5 @@
 <template>
-    <div>{{ home }}</div>
+    <el-button>{{ home }}</el-button>
 </template>
 
 <script lang="ts" setup>
