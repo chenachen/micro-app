@@ -1,9 +1,7 @@
 <template>
-    <div> child app <Test /> </div>
+    <router-view />
 </template>
 
-<script setup lang="ts">
-import Test from 'child-vue3/components/test-comp.vue'
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

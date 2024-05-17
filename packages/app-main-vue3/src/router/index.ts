@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import { childAppConfig } from 'main-vue3/configs/app'
 
 const LayoutContainer = () => import('main-vue3/layouts/index.vue')
 const Home = () => import('main-vue3/views/home/index.vue')
@@ -7,6 +8,7 @@ const Template = () => import('main-vue3/views/template/index.vue')
 const User = () => import('main-vue3/views/user/index.vue')
 const UserList = () => import('main-vue3/views/user/user-list/index.vue')
 const UserGroup = () => import('main-vue3/views/user/user-group/index.vue')
+const ChildVue3 = () => import('main-vue3/views/child-app/ChildVue3.vue')
 
 export const routes: RouteRecordRaw[] = [
     {
@@ -68,6 +70,24 @@ export const routes: RouteRecordRaw[] = [
                         meta: {
                             title: '用户组',
                             isMenu: true,
+                        },
+                    },
+                ],
+            },
+            {
+                path: childAppConfig.childVue3.basePath,
+                component: ChildVue3,
+                meta: {
+                    title: '子应用',
+                    isMenu: true,
+                },
+                children: [
+                    {
+                        path: ':allPage(.*)',
+                        component: ChildVue3,
+                        meta: {
+                            title: '子应用',
+                            isMenu: false,
                         },
                     },
                 ],

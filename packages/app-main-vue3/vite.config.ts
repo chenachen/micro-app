@@ -9,6 +9,7 @@ import { resolve } from 'path'
 export default ({ mode }: ConfigEnv): UserConfig => {
     const { VITE_MAIN_PORT } = loadEnv(mode, resolve(__dirname, '../..'))
     return {
+        envDir: '../..',
         server: {
             port: Number(VITE_MAIN_PORT),
         },

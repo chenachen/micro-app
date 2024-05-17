@@ -1,13 +1,12 @@
-import { routes } from 'main-vue3/router'
 import { RouteRecordRaw } from 'vue-router'
 
 export interface MenuType {
     label: string
     path: string
-    children: MenuType[] | null
+    children?: MenuType[] | null
 }
 
-export function getMenuList() {
+export function routeToMenu(routes: RouteRecordRaw[], basePath = '') {
     const traverse = (rows: RouteRecordRaw[], parentPath: string = '') => {
         const menuList: MenuType[] = []
 
@@ -27,5 +26,5 @@ export function getMenuList() {
         return menuList
     }
 
-    return traverse(routes[0].children!)
+    return traverse(routes, basePath)
 }
