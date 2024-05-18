@@ -1,5 +1,11 @@
 import { createFetch } from '@vueuse/core'
-import type { AfterFetchContext, BeforeFetchContext, UseFetchOptions, OnFetchErrorContext, UseFetchReturn } from '@vueuse/core'
+import type {
+    AfterFetchContext,
+    BeforeFetchContext,
+    UseFetchOptions,
+    OnFetchErrorContext,
+    UseFetchReturn,
+} from '@vueuse/core'
 
 const baseFetch = createFetch({
     baseUrl: '/api',

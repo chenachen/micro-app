@@ -16,10 +16,8 @@ microApp.preFetch(
             name: item.name,
             url: item.url,
             iframe: true,
-            level: 3,
         }
     }),
-    0,
 )
 
 createApp(App).use(router).mount('#app')

@@ -6,8 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { useCustomRouterPush } from 'child-vue3/router'
 
-const router = useRouter()
-const goTo = () => router.push('/home')
+const goTo = () => useCustomRouterPush('/home')
 </script>

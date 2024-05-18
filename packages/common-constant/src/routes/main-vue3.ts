@@ -1,4 +1,5 @@
 import { Route } from './types'
+import { AppType } from '../configs/app.ts'
 
 const _mainRoutes = {
     base: {
@@ -41,7 +42,7 @@ const _mainRoutes = {
         },
     },
     userGroup: {
-        name: 'UserList',
+        name: 'UserGroup',
         path: '/user/group',
         meta: {
             title: '用户组',
@@ -50,6 +51,17 @@ const _mainRoutes = {
     },
 }
 
-export type MainRoutesType = Readonly<Record<keyof typeof _mainRoutes, Route>>
+type keys = keyof typeof _mainRoutes
+export type MainRoutesType = Record<keys, Route>
 
-export const mainRoutes = _mainRoutes as MainRoutesType
+export const mainRoutes = Object.entries(_mainRoutes).reduce((obj, [key, value]) => {
+    obj[key as keys] = {
+        ...value,
+        meta: {
+            ...value.meta,
+            type: AppType.MAIN_VUE3,
+        },
+    }
+
+    return obj
+}, {} as MainRoutesType)

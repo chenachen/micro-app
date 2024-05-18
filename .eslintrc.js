@@ -38,14 +38,12 @@ module.exports = {
     },
     plugins: ['vue', '@typescript-eslint'],
     rules: {
-        'prettier/prettier': ['error', prettierConfig],
         'no-console': ['error'],
         'no-debugger': ['error'],
         'comma-dangle': ['error', 'always-multiline'], // 对象结尾逗号
         'comma-style': ['error', 'last'],
         'arrow-parens': ['error', 'as-needed'],
         semi: ['error', 'never'],
-        'space-before-function-paren': ['error', 'never'],
         '@typescript-eslint/no-var-requires': 0,
         'vue/multi-word-component-names': ['error', { ignores: ['index'] }],
         'vue/no-irregular-whitespace': [
@@ -59,6 +57,7 @@ module.exports = {
                 skipHTMLTextContents: false,
             },
         ],
+        'prettier/prettier': ['error', prettierConfig],
     },
     settings: {
         'import/resolver': {

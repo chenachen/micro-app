@@ -1,6 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import { mainRoutes, childAppConfig } from '@common/constant'
+import { createRouter, createWebHistory } from 'vue-router'
+import { AppType, childAppConfig, mainRoutes } from '@common/constant'
+import microApp from '@micro-zoe/micro-app'
 
 const LayoutContainer = () => import('main-vue3/layouts/index.vue')
 const Home = () => import('main-vue3/views/home/index.vue')
@@ -43,7 +44,7 @@ export const routes: RouteRecordRaw[] = [
                 component: ChildVue3,
                 meta: {
                     title: '子应用',
-                    isMenu: true,
+                    type: AppType.CHILD_VUE3,
                 },
                 children: [
                     {
@@ -51,7 +52,7 @@ export const routes: RouteRecordRaw[] = [
                         component: ChildVue3,
                         meta: {
                             title: '子应用',
-                            isMenu: false,
+                            type: AppType.CHILD_VUE3,
                         },
                     },
                 ],
@@ -71,5 +72,7 @@ router.beforeEach((to, from) => {
     }
     window['console'].log(to, from)
 })
+
+microApp.router.setBaseAppRouter(router)
 
 export default router

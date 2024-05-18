@@ -8,13 +8,16 @@
                 text-color="#fff"
                 active-text-color="#ffd04b"
                 router
-                @select="handleSelect"
             >
                 <template v-for="menu in menuList" :key="menu.path">
                     <el-menu-item v-if="!menu.children?.length" :index="menu.path">{{ menu.label }}</el-menu-item>
                     <el-sub-menu v-else :index="menu.path">
                         <template #title>{{ menu.label }}</template>
-                        <el-menu-item v-for="childrenMenu in menu.children" :key="childrenMenu.path" :index="childrenMenu.path">
+                        <el-menu-item
+                            v-for="childrenMenu in menu.children"
+                            :key="childrenMenu.path"
+                            :index="childrenMenu.path"
+                        >
                             {{ childrenMenu.label }}
                         </el-menu-item>
                     </el-sub-menu>
@@ -28,35 +31,14 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
-import microApp from '@micro-zoe/micro-app'
-import { routeToMenu } from '@common/utils'
-import { routes } from '../router'
-import { RouteRecordRaw, useRoute } from 'vue-router'
-import { childAppConfig } from '@common/constant'
-import { MenuType } from '@common/utils/src/route-to-menu'
+import { computed, readonly } from 'vue'
+import { useRoute } from 'vue-router'
+import { MenuList } from './menu-list.ts'
 
 const route = useRoute()
-const defaultActive = route.path
+const defaultActive = computed(() => route.path)
 
-const menuList = ref<MenuType[]>(routeToMenu(routes[0].children!))
-const handleSelect = () => {}
-
-Object.values(childAppConfig).forEach(item => {
-    microApp.addDataListener(item.name, function handler(data: Record<string, unknown>) {
-        const { routes } = data
-        if (routes) {
-            const childMenu = routeToMenu((routes as RouteRecordRaw[])[0].children!, item.basePath)
-            menuList.value.forEach(menu => {
-                if (menu.path === item.basePath) {
-                    menu.children = childMenu
-                }
-            })
-
-            microApp.removeDataListener(item.name, handler)
-        }
-    })
-})
+const menuList = readonly(MenuList)
 </script>
 
 <style lang="less">

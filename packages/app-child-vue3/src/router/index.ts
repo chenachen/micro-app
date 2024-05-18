@@ -1,5 +1,6 @@
+import type { Router, RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
-import type { RouteRecordRaw } from 'vue-router'
+import { AppType, routesMap } from '@common/constant'
 
 const Page1 = () => import('child-vue3/views/child-page1/index.vue')
 const Page2 = () => import('child-vue3/views/child-page2/index.vue')
@@ -40,5 +41,18 @@ router.beforeEach((to, from) => {
     }
     window['console'].log(to, from)
 })
+
+export function useCustomRouterPush(path: string) {
+    const { meta } = routesMap.get(path)!
+
+    if (meta.type === AppType.CHILD_VUE3) {
+        router.push(path)
+    } else if (meta.type === AppType.MAIN_VUE3) {
+        const baseRouter = window.microApp.router.getBaseAppRouter() as Router
+        baseRouter.push(path)
+    } else {
+        window.microApp.router.push({ name: meta.type, path })
+    }
+}
 
 export default router
