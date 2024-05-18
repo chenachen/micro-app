@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import { childAppConfig } from 'main-vue3/configs/app'
+import { childAppConfig } from '@common/constant'
 
 const { url, basePath, name } = childAppConfig.childVue3
 </script>

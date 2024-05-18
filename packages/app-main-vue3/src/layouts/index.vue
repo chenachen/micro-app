@@ -33,7 +33,7 @@ import microApp from '@micro-zoe/micro-app'
 import { routeToMenu } from '@common/utils'
 import { routes } from '../router'
 import { RouteRecordRaw, useRoute } from 'vue-router'
-import { childAppConfig } from 'main-vue3/configs/app'
+import { childAppConfig } from '@common/constant'
 import { MenuType } from '@common/utils/src/route-to-menu'
 
 const route = useRoute()

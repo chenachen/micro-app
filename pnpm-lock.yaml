@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -84,12 +84,18 @@ importers:
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
+      vite:
+        specifier: ^5.2.10
+        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)
 
   packages/app-child-vue3:
     dependencies:
       '@common/components':
         specifier: workspace:*
         version: link:../common-components
+      '@common/constant':
+        specifier: workspace:*
+        version: link:../common-constant
       '@common/utils':
         specifier: workspace:*
         version: link:../common-utils
@@ -106,9 +112,6 @@ importers:
       unplugin-vue-components:
         specifier: ^0.27.0
         version: 0.27.0(vue@3.4.25)
-      vite:
-        specifier: ^5.2.10
-        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.14(typescript@5.4.5)
@@ -118,6 +121,9 @@ importers:
       '@common/components':
         specifier: workspace:*
         version: link:../common-components
+      '@common/constant':
+        specifier: workspace:*
+        version: link:../common-constant
       '@common/utils':
         specifier: workspace:*
         version: link:../common-utils
@@ -134,14 +140,13 @@ importers:
       unplugin-vue-components:
         specifier: ^0.27.0
         version: 0.27.0(vue@3.4.25)
-      vite:
-        specifier: ^5.2.10
-        version: 5.2.10(@types/node@20.12.7)(less@4.2.0)
       vue-tsc:
         specifier: ^2.0.6
         version: 2.0.14(typescript@5.4.5)
 
   packages/common-components: {}
+
+  packages/common-constant: {}
 
   packages/common-utils: {}
 

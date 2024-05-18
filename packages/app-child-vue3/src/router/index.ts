@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+
 const Page1 = () => import('child-vue3/views/child-page1/index.vue')
-const Page2 = () => import('child-vue3/views/child-page1/index.vue')
+const Page2 = () => import('child-vue3/views/child-page2/index.vue')
 
 export const routes: RouteRecordRaw[] = [
     {

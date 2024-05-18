@@ -23,13 +23,6 @@
             "child-vue3/*": ["./src/*"]
         }
     },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.tsx",
-        "src/**/*.vue",
-        "../common-utils/**/*.ts",
-        "../common-components/**/*.ts",
-        "../common-components/**/*.vue"
-    ],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "../../types/**/*.ts"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

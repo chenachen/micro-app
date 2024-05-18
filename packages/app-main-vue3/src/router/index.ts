@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import { childAppConfig } from 'main-vue3/configs/app'
+import { mainRoutes, childAppConfig } from '@common/constant'
 
 const LayoutContainer = () => import('main-vue3/layouts/index.vue')
 const Home = () => import('main-vue3/views/home/index.vue')
@@ -12,65 +12,29 @@ const ChildVue3 = () => import('main-vue3/views/child-app/ChildVue3.vue')
 
 export const routes: RouteRecordRaw[] = [
     {
-        path: '/',
+        path: mainRoutes.base.path,
         component: LayoutContainer,
-        redirect: 'home',
+        redirect: mainRoutes.home.path,
         children: [
             {
-                path: 'home',
+                ...mainRoutes.home,
                 component: Home,
-                meta: {
-                    title: '主页',
-                    isMenu: true,
-                },
             },
             {
-                path: 'template1',
+                ...mainRoutes.template,
                 component: Template,
-                meta: {
-                    title: '模板页面1',
-                    isMenu: true,
-                },
             },
             {
-                path: 'template2',
-                component: Template,
-                meta: {
-                    title: '模板页面2, 不展示在菜单',
-                    isMenu: false,
-                },
-            },
-            {
-                path: 'template3',
-                component: Template,
-                meta: {
-                    title: '模板页面3',
-                    isMenu: true,
-                },
-            },
-            {
-                path: 'user',
+                ...mainRoutes.user,
                 component: User,
-                meta: {
-                    title: '用户管理',
-                    isMenu: true,
-                },
                 children: [
                     {
-                        path: 'list',
+                        ...mainRoutes.userList,
                         component: UserList,
-                        meta: {
-                            title: '用户列表',
-                            isMenu: true,
-                        },
                     },
                     {
-                        path: 'group',
+                        ...mainRoutes.userGroup,
                         component: UserGroup,
-                        meta: {
-                            title: '用户组',
-                            isMenu: true,
-                        },
                     },
                 ],
             },

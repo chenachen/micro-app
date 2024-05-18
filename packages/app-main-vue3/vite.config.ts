@@ -14,12 +14,20 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             port: Number(VITE_MAIN_PORT),
         },
         plugins: [
-            vue(),
+            vue({
+                template: {
+                    compilerOptions: {
+                        isCustomElement: tag => tag === 'micro-app',
+                    },
+                },
+            }),
             AutoImport({
                 resolvers: ElementPlusResolver(),
+                dts: './src/types/auto-import.d.ts',
             }),
             Components({
                 resolvers: ElementPlusResolver(),
+                dts: './src/types/components.d.ts',
             }),
         ],
         resolve: {

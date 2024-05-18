@@ -18,11 +18,7 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true,
-        "paths": {
-            "main-vue3/*": ["./src/*"]
-        }
+        "noFallthroughCasesInSwitch": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "../../types/**/*.ts"],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "include": ["src/**/*.ts", "../../types/**/*.ts"]
 }

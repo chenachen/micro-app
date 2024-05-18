@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import microApp from '@micro-zoe/micro-app'
 import App from './App.vue'
 import router from './router'
-import { childAppConfig } from './configs/app'
+import { childAppConfig } from '@common/constant'
 
 import 'normalize.css'
 import './styles/index.less'
