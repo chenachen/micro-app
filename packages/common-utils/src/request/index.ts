@@ -6,6 +6,7 @@ import type {
     OnFetchErrorContext,
     UseFetchReturn,
 } from '@vueuse/core'
+import { WHITE_LIST } from './white-list'
 
 const baseFetch = createFetch({
     baseUrl: '/api',
@@ -13,7 +14,7 @@ const baseFetch = createFetch({
         beforeFetch,
         afterFetch,
         onFetchError,
-        timeout: 30000,
+        timeout: 300,
     },
     fetchOptions: {
         mode: 'cors',
@@ -21,7 +22,23 @@ const baseFetch = createFetch({
 })
 
 async function beforeFetch({ url, options, cancel }: BeforeFetchContext) {
-    window.console.log(url, options, cancel)
+    if (WHITE_LIST.includes(url)) {
+        return
+    }
+    const token = localStorage.getItem('token')
+    if (!token) {
+        cancel()
+    }
+
+    options.headers = {
+        ...options.headers,
+        Authorization: `Bearer ${token}`,
+    }
+
+    return {
+        url,
+        options,
+    }
 }
 
 async function afterFetch({ data, response }: AfterFetchContext) {
@@ -34,8 +51,8 @@ async function onFetchError({ error, data }: OnFetchErrorContext) {
 }
 
 interface CustomConfig extends UseFetchOptions {
-    loadingTarget: string | HTMLElement
-    showErrMsg: boolean
+    loadingTarget?: string | HTMLElement
+    showErrMsg?: boolean
 }
 
 interface RequestParams {
@@ -44,11 +61,19 @@ interface RequestParams {
     method: 'get' | 'post'
 }
 
-export async function request<T>(requestParams: RequestParams, config: CustomConfig) {
+export async function useRequest<T>(requestParams: RequestParams, config: CustomConfig = {}) {
     const { url, method, data } = requestParams
     const { loadingTarget, showErrMsg, ...fetchOptions } = config
 
-    window.console.log(loadingTarget, showErrMsg)
+    if (loadingTarget) {
+        // todo
+        return
+    }
+
+    if (showErrMsg) {
+        // todo
+        return
+    }
 
     return (await baseFetch(url, fetchOptions)[method](data)) as UseFetchReturn<T>
 }

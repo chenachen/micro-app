@@ -1,1 +1,1 @@
-export { request } from './src/request'
+export { useRequest } from './src/request'

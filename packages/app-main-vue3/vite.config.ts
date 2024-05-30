@@ -12,6 +12,9 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         envDir: '../..',
         server: {
             port: Number(VITE_MAIN_PORT),
+            proxy: {
+                '/api': 'localhost:3000',
+            },
         },
         plugins: [
             vue({
