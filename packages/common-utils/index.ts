@@ -1,1 +1,1 @@
-export { useRequest } from './src/request'
+export { getCaptchaApi, loginApi } from './src/api/auth'

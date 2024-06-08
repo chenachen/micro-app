@@ -10,5 +10,10 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
-    "devDependencies": {}
+    "dependencies": {
+        "qs": "^6.12.1"
+    },
+    "devDependencies": {
+        "@types/qs": "^6.9.15"
+    }
 }

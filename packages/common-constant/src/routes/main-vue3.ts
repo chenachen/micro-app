@@ -9,6 +9,14 @@ const _mainRoutes = {
             title: '',
         },
     },
+    login: {
+        name: 'Login',
+        path: '/login',
+        meta: {
+            title: '登录',
+            permissions: [],
+        },
+    },
     home: {
         name: 'Home',
         path: '/home',

@@ -10,8 +10,13 @@ const User = () => import('main-vue3/views/user/index.vue')
 const UserList = () => import('main-vue3/views/user/user-list/index.vue')
 const UserGroup = () => import('main-vue3/views/user/user-group/index.vue')
 const ChildVue3 = () => import('main-vue3/views/child-app/ChildVue3.vue')
+const Login = () => import('main-vue3/views/login/index.vue')
 
 export const routes: RouteRecordRaw[] = [
+    {
+        ...mainRoutes.login,
+        component: Login,
+    },
     {
         path: mainRoutes.base.path,
         component: LayoutContainer,
@@ -66,11 +71,14 @@ const router = createRouter({
     routes,
 })
 
-router.beforeEach((to, from) => {
+router.beforeEach(to => {
     if (to.meta.name) {
         document.title = to.meta.title
     }
-    window['console'].log(to, from)
+    const token = localStorage.getItem('accessToken')
+    if (!token && to.name !== mainRoutes.login.name) {
+        return mainRoutes.login.path
+    }
 })
 
 microApp.router.setBaseAppRouter(router)

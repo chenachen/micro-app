@@ -13,7 +13,10 @@ export default ({ mode }: ConfigEnv): UserConfig => {
         server: {
             port: Number(VITE_MAIN_PORT),
             proxy: {
-                '/api': 'localhost:3000',
+                '/api': {
+                    target: 'http://localhost:3000',
+                    changeOrigin: true,
+                },
             },
         },
         plugins: [
