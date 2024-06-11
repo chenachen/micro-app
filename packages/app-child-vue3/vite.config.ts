@@ -19,11 +19,11 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             vue(),
             AutoImport({
                 resolvers: ElementPlusResolver(),
-                dts: './src/types/auto-import.d.ts',
+                dts: '../../types/child-vue3-auto-import.d.ts',
             }),
             Components({
                 resolvers: ElementPlusResolver(),
-                dts: './src/types/components.d.ts',
+                dts: '../../types/child-vue3-components.d.ts',
             }),
         ],
         resolve: {

@@ -9,6 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TestComp: typeof import('./../components/test-comp.vue')['default']
+    TestComp: typeof import('./../packages/app-child-vue3/src/components/test-comp.vue')['default']
   }
 }

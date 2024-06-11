@@ -14,7 +14,7 @@ export interface CustomConfig extends UseFetchOptions {
 export interface RequestParams {
     url: string
     data?: BodyInit | null | undefined
-    method: 'get' | 'post'
+    method?: 'get' | 'post'
     options?: RequestInit
 }
 
@@ -22,7 +22,7 @@ const GLOBAL_PREFIX = '/api'
 
 class BaseFetch {
     private readonly baseFetch: typeof useFetch
-    private readonly urlMap: Map<string, () => void>
+    private readonly urlMap: Map<string, BeforeFetchContext>
 
     constructor() {
         this.baseFetch = createFetch({
@@ -47,7 +47,7 @@ class BaseFetch {
         const [_url] = url.split('?')
 
         if (this.urlMap.has(_url)) {
-            const { cancel: prevRequestCancel } = this.urlMap.get(_url)
+            const { cancel: prevRequestCancel } = this.urlMap.get(_url)!
             prevRequestCancel()
             this.urlMap.delete(_url)
         } else {
@@ -80,7 +80,7 @@ class BaseFetch {
         if (data.code === ErrorCode.ACCESS_TOKEN_EXPIRED) {
             await this.refreshToken()
             // todo: 修复无感刷新token问题
-            const { url: fullUrl, options } = this.urlMap.get(url)
+            const { url: fullUrl, options } = this.urlMap.get(url)!
             const newRes = await this.request({
                 url: fullUrl.split(GLOBAL_PREFIX)[1],
                 options,
@@ -94,7 +94,7 @@ class BaseFetch {
     }
 
     private async onFetchError(ctx: OnFetchErrorContext) {
-        const { code } = ctx.data
+        const { code } = ctx.data ?? {}
 
         switch (code) {
             default:
@@ -138,7 +138,7 @@ class BaseFetch {
 
     async refreshToken() {
         const token = localStorage.getItem('refreshToken')
-        const { accessToken } = await this.request({
+        const { accessToken } = await this.request<{ accessToken: string }>({
             url: '/auth/refreshToken',
             method: 'post',
             options: {

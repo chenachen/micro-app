@@ -29,11 +29,11 @@ export default ({ mode }: ConfigEnv): UserConfig => {
             }),
             AutoImport({
                 resolvers: ElementPlusResolver(),
-                dts: './src/types/auto-import.d.ts',
+                dts: '../../types/main-auto-import.d.ts',
             }),
             Components({
                 resolvers: ElementPlusResolver(),
-                dts: './src/types/components.d.ts',
+                dts: '../../types/main-components.d.ts',
             }),
         ],
         resolve: {
