@@ -11,6 +11,8 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@common/constant": "workspace:*",
+        "jwt-decode": "^4.0.0",
         "qs": "^6.12.1"
     },
     "devDependencies": {

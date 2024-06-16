@@ -1,7 +1,7 @@
 import { BaseListParams } from './types/query.ts'
 import { useGetRequest } from './request'
 
-interface User {
+export interface User {
     id: number
     account: string
     nickname: string
@@ -14,6 +14,11 @@ interface User {
     updatedAt: Date
 }
 
-export function userListApi(params: BaseListParams) {
-    return useGetRequest<User>('/user/list', params)
+interface UserListRes {
+    list: User[]
+    total: number
+}
+
+export function getUserListApi(params: BaseListParams) {
+    return useGetRequest<UserListRes, BaseListParams>('/user/list', params)
 }

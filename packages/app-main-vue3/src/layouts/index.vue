@@ -25,7 +25,9 @@
             </el-menu>
         </el-header>
         <el-main class="layout-main">
-            <router-view></router-view>
+            <el-card class="main-wrapper">
+                <router-view></router-view>
+            </el-card>
         </el-main>
     </el-container>
 </template>
@@ -53,6 +55,15 @@ const menuList = readonly(MenuList)
     .layout-main {
         flex: 1;
         min-height: 0;
+        background: #f2f3f5;
+        padding: 24px 36px;
+        overflow: hidden;
+
+        .main-wrapper {
+            background: #ffffff;
+            height: 100%;
+            border-radius: 8px;
+        }
     }
 }
 </style>

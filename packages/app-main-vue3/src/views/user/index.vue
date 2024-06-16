@@ -1,6 +1,4 @@
 <template>
-    <div>
-        <div>用户页面</div>
-        <router-view />
-    </div>
+    <router-view />
 </template>
+<script setup lang="ts"></script>

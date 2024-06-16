@@ -1,7 +1,5 @@
 <template>
-    <el-config-provider size="small">
-        <router-view />
-    </el-config-provider>
+    <router-view />
 </template>
 
 <script setup lang="ts"></script>

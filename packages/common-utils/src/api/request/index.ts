@@ -5,10 +5,14 @@ import { stringify } from 'qs'
 import { watchEffect } from 'vue'
 import { useLoading } from '../../hooks/loading.ts'
 import { ErrorCode } from '../types/error-code.ts'
+import { Router } from 'vue-router'
+import { mainRoutes } from '@common/constant'
+import microApp from '@micro-zoe/micro-app'
 
 export interface CustomConfig extends UseFetchOptions {
     loadingTarget?: string | HTMLElement
     showErrMsg?: boolean
+    nativeResponse?: boolean
 }
 
 export interface RequestParams {
@@ -78,14 +82,20 @@ class BaseFetch {
 
         const { data } = ctx
         if (data.code === ErrorCode.ACCESS_TOKEN_EXPIRED) {
-            await this.refreshToken()
-            // todo: 修复无感刷新token问题
+            const accessToken = await this.refreshToken()
             const { url: fullUrl, options } = this.urlMap.get(url)!
-            const newRes = await this.request({
-                url: fullUrl.split(GLOBAL_PREFIX)[1],
-                options,
-            })
-            ctx.data = newRes
+            options.headers = {
+                ...options.headers,
+                Authorization: `Bearer ${accessToken}`,
+            }
+
+            ctx.data = await this.request(
+                {
+                    url: fullUrl.split(GLOBAL_PREFIX)[1],
+                    options,
+                },
+                { nativeResponse: true },
+            )
         }
 
         this.urlMap.delete(url)
@@ -93,10 +103,16 @@ class BaseFetch {
         return ctx
     }
 
-    private async onFetchError(ctx: OnFetchErrorContext) {
+    private onFetchError(ctx: OnFetchErrorContext) {
         const { code } = ctx.data ?? {}
+        const router = microApp.router.getBaseAppRouter() as Router
 
         switch (code) {
+            case ErrorCode.Forbidden:
+                router.push({
+                    name: mainRoutes.login.name,
+                })
+                break
             default:
             // todo something
         }
@@ -106,7 +122,7 @@ class BaseFetch {
 
     request<T>(requestParams: RequestParams, config: CustomConfig = {}): Promise<T> {
         const { url, method, data, options = {} } = requestParams
-        const { loadingTarget, showErrMsg = true, ...fetchOptions } = config
+        const { loadingTarget, showErrMsg = true, nativeResponse = false, ...fetchOptions } = config
         const { isFetching, data: res } = this.baseFetch(
             url,
             {
@@ -130,7 +146,7 @@ class BaseFetch {
                         reject(message)
                     }
 
-                    resolve(data)
+                    resolve(nativeResponse ? res.value : data)
                 }
             })
         })
@@ -149,6 +165,7 @@ class BaseFetch {
             },
         })
         localStorage.setItem('accessToken', accessToken)
+        return accessToken
     }
 }
 
