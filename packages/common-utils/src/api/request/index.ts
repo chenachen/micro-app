@@ -12,6 +12,7 @@ import microApp from '@micro-zoe/micro-app'
 export interface CustomConfig extends UseFetchOptions {
     loadingTarget?: string | HTMLElement
     showErrMsg?: boolean
+    showSuccessMsg?: boolean
     nativeResponse?: boolean
 }
 
@@ -122,7 +123,13 @@ class BaseFetch {
 
     request<T>(requestParams: RequestParams, config: CustomConfig = {}): Promise<T> {
         const { url, method, data, options = {} } = requestParams
-        const { loadingTarget, showErrMsg = true, nativeResponse = false, ...fetchOptions } = config
+        const {
+            loadingTarget,
+            showErrMsg = true,
+            showSuccessMsg = false,
+            nativeResponse = false,
+            ...fetchOptions
+        } = config
         const { isFetching, data: res } = this.baseFetch(
             url,
             {
@@ -141,9 +148,13 @@ class BaseFetch {
                     const { code, data, message } = res.value
 
                     if (code !== SUCCESS_CODE && showErrMsg) {
-                        ElMessage.error(message)
+                        const m = Array.isArray(message) ? message[0] : message
+                        ElMessage.error(m)
 
                         reject(message)
+                    }
+                    if (showSuccessMsg && code === SUCCESS_CODE && message) {
+                        ElMessage.success(message)
                     }
 
                     resolve(nativeResponse ? res.value : data)
@@ -179,15 +190,11 @@ export function useGetRequest<T, U extends object>(url: string, params: U, confi
     return baseFetch.request<T>({ url: finalUrl, method: 'get' }, config)
 }
 
-export function usePostRequest<T>(
-    url: string,
-    data: BodyInit | null | undefined,
-    config: CustomConfig = {},
-): Promise<T> {
+export function usePostRequest<T>(url: string, data: object | null | undefined, config: CustomConfig = {}): Promise<T> {
     return baseFetch.request<T>(
         {
             url,
-            data,
+            data: data ? JSON.stringify(data) : data,
             method: 'post',
         },
         config,

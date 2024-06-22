@@ -27,5 +27,5 @@ interface LoginRes {
 }
 
 export function loginApi(data: LoginData) {
-    return usePostRequest<LoginRes>('/auth/login', JSON.stringify(data))
+    return usePostRequest<LoginRes>('/auth/login', data)
 }
